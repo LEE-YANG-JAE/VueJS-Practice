@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div style="background-color: magenta; width: 100px; height: 100px;" v-on:click="doMiddle">
+	        <a href="http://www.google.com" v-on:click.prevent.stop="doThat">타임라인</a>
+		</div>
+		<hr>
+		<div v-on:click="doLast2">
+	        <div style="background-color: blue;width:200px;height:200px;" v-on:click.self="doMiddle2">
+	            <span v-on:click="doThat2">span element</span>
+	        </div>
+	    </div>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			methods: {
+				doThat: function () {
+					console.log("이벤트가 발생했는데 stop 이벤트 수식어로 이벤트가 정지될까요?");
+				},
+				doMiddle: function () {
+					console.log("doMiddle 이벤트가 발생했습니다.");
+				},
+				doThat2: function () {
+					console.log("doThat Click");
+				},
+				doMiddle2: function () {
+					console.log("doMiddle event..");
+				},
+				doLast2: function () {
+					console.log("do last..");
+				}
+			}
+		});
+	</script>
+</body>
+</html>

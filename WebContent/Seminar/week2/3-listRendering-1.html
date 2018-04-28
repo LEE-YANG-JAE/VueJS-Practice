@@ -12,14 +12,17 @@
 					{{ item.product }}
 				</li>
 			</ul>
+			<hr>
 			<div v-for="item in items" >
 				{{ item.product }}
 			</div>
+			<hr>
 			<ul>
 				<li v-for="(item, index) in items">
 					<input type="text" disabled="true" v-model="index" style="width:10px;"> => <span>{{ item.product }}</span>
 				</li>
 			</ul>
+			<hr>
 			<ul>
 				<li v-for="(value, key) in object">
 					{{ key }} person "{{ value.name }}" likes {{ value.hobby }}

@@ -9,19 +9,22 @@
 		<p v-if="inStock">{{ product }}</p>
 		<p v-else-if="onSale">{{ product + " " + product.split('').reverse().join('') }}</p>
 		<p v-else="inStock">Out of stock</p>
-		
+		<hr>
 		<p v-show="showProductDetails">This is nice for all of us.</p>
 	</div>
+	<hr>
 	<div id="app2">
 		<p>What is your first name?</p>
 		<input v-model="firstName">
 		<p>My first name is {{ firstName }}.</p>
 	</div>
+	<hr>
 	<div id="app3">
 	    <span v-if="id == 1">값이 1입니다.</span>
 	    <span v-else-if="id == 2">값이 2입니다.</span>
 	    <span v-else>값이 1 또는 2가 아닙니다.</span>
 	</div>
+	<hr>
 	<div id="app4">
 		<template v-if="id == 1">
 			<span>값은</span>

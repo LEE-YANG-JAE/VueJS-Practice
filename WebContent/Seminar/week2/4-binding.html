@@ -13,13 +13,15 @@
 <body>
 	<div id="app">
 		<a v-bind:href="url">naver</a>
-		<br>
+		<hr>
 		<a :href="url2">daum</a>
-		<br>
+		<hr>
 		<button :disabled="isButtonDisabled">Here</button>
+		<hr>
 		<div :class="{ active : isActive }">
 			{{ url }}
 		</div>
+		<hr>
 		<div :style="{ color : activeColor }">
 			{{ url2 }}
 		</div>
