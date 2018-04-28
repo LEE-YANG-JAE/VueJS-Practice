@@ -7,7 +7,7 @@
 <body>
 	<div id="app">
 		<p v-if="inStock">{{ product }}</p>
-		<p v-else-if="onSale">{{ product + " " + product.split('').reverse().join('') }}</p>
+		<p v-else-if="onSale">{{ product  }} ==> {{ product.split('').reverse().join('') }}</p>
 		<p v-else="inStock">Out of stock</p>
 		<hr>
 		<p v-show="showProductDetails">This is nice for all of us.</p>

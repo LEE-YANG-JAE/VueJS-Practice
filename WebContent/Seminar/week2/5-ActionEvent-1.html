@@ -6,11 +6,9 @@
 </head>
 <body>
 	<div id="app">
-		<template>
-			<div>
-				<span>{{ count }} <button v-on:click="addToCart">ADD</button></span>
-			</div>
-		</template>
+		<div>
+			<span>{{ count }} <button v-on:click="addToCart">ADD</button></span>
+		</div>
 		<hr>
 		<template>
 			<div v-for="list in products">
@@ -20,6 +18,7 @@
 				</template>
 			</div>
 		</template>
+		<hr>
 		<div>
 			<select v-model="product">
 				<option>Computer</option>
@@ -48,18 +47,18 @@
 					for ( var i = 0; i < vm.products.length; i++ ){
 						if(vm.products[i].name == product ){
 							vm.products[i].count += 1
-							vm.products[i].value = vm.products[i].count * vm.products[i].price
 						}
 					}
 				}
 			},
 			created: function(){
-				this.product = this.products[1].name; // 라이프 사이클의 beforeMount, mount 까지 가능
+				this.product = this.products[1].name; // 라이프 사이클의 beforeMount, mounted 까지 가능
 			},
 			computed : {
 				sum : function() {
 					var sum = 0;
 					for ( var i = 0; i < this.products.length; i++ ){
+						this.products[i].value = this.products[i].count * this.products[i].price
 						sum += this.products[i].value
 					}
 					return sum;
