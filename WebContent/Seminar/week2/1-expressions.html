@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>I have a {{ product }}</p>
+		<p>{{ product + "s" }}</p>
+		<p>{{ isWorking ? "YES" : "NO" }}</p>
+		<p>{{ getSalePrice() }}</p>
+	</div>
+	<div id="app2">
+		<p>{{ product.name }}</p>
+		<p>{{ product.price }}</p>
+		<p>{{ product.getSalePrice() }}</p>
+	</div>
+	
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				product : "computer",
+				isWorking : true
+			},
+			methods : {
+				getSalePrice : function() {
+					return this.product + " => 100$"
+				}
+			}
+		});
+		var vm2 = new Vue({
+			el : "#app2",
+			data : {
+				product : {
+					name : "notebook",
+					price : 100,
+					getSalePrice : function() {
+						return this.price - ( this.price / 100 * 10 ) ;
+					}
+				}
+			}
+		});
+	</script>
+</body>
+</html>

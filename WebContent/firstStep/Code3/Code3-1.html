@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<script>
+		
+	</script>
+</head>
+<body>
+	<div id ="apple">
+		<comp></comp>
+		<dl>
+			<dt>{{ msg }}</dt>
+			<dd v-text="description"></dd>
+		</dl>
+	</div>
+	<div id="banana">
+		<yang-jae-lee></yang-jae-lee>
+	</div>
+	<br>
+	<script>
+		Vue.component('comp', {
+			render : function(h) {
+				return h("span", "안녕하세요 Vue입니다.")
+			}
+		});
+		new Vue({
+			el : "#apple",
+			data : {
+				msg : "Hello",
+				description : "Test Success"
+			}
+		});
+		
+		Vue.component('yangJaeLee', {
+			template : "<span>안녕하세요 이양재입니다.</span>"
+		});
+		new Vue({
+			el : "#banana"
+		});
+	</script>
+</body>
+</html>

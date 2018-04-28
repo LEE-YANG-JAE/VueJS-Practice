@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id ="app">
+		{{ message }}
+	</div>
+	<div id="app2">
+		<virtual-dom></virtual-dom>
+	</div>
+	<script>
+		new Vue({
+			el : "#app",
+			data : {
+				message : "안녕하세요! Vue js 개발에 온 것을 환영합니다."
+			}
+		});
+		var vm = new Vue({
+			el : "#app2",
+			components : {
+				"virtualDom" : {
+					template : "<div>안녕하세요 가상 DOM 입니다.</div>"
+				}
+			}
+		});
+	</script>
+</body>
+</html>

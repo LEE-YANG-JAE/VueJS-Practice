@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template>
+			<ul>
+				<li v-for="item in items" :key="item.id">
+					{{ item.product }}
+				</li>
+			</ul>
+			<div v-for="item in items" >
+				{{ item.product }}
+			</div>
+			<ul>
+				<li v-for="(item, index) in items">
+					<input type="text" disabled="true" v-model="index" style="width:10px;"> => <span>{{ item.product }}</span>
+				</li>
+			</ul>
+			<ul>
+				<li v-for="(value, key) in object">
+					{{ key }} person "{{ value.name }}" likes {{ value.hobby }}
+				</li>
+			</ul>
+		</template>
+
+		<cart-product v-for="item in products" 
+			v-bind:ace="item" v-bind:key="item.id">
+		</cart-product>
+	</div>
+	<script>
+		const items = [{id : 100, brand : "Samsung", name : "G-6"},
+					 {id : 101, brand : "LG", name : "G4"}];
+		let vm = new Vue({
+			el : "#app",
+			data : {
+				items : [ { id : 1,product : "computer"},
+						  { id : 2,product : "notebook"}]
+				,object : [ { name : "Yang Jae", hobby : "game"},
+						    { name : "Seung Hyun", hobby : "soccer" } ]
+				,products : items
+			}, components : {
+				cartProduct : {
+					template : "<div>{{ ace.id }} : {{ ace.brand }} {{ ace.name }}</div>",
+					props : ["ace"]
+				}
+			}
+		});
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-if="inStock">{{ product }}</p>
+		<p v-else-if="onSale">{{ product + " " + product.split('').reverse().join('') }}</p>
+		<p v-else="inStock">Out of stock</p>
+		
+		<p v-show="showProductDetails">This is nice for all of us.</p>
+	</div>
+	<div id="app2">
+		<p>What is your first name?</p>
+		<input v-model="firstName">
+		<p>My first name is {{ firstName }}.</p>
+	</div>
+	<div id="app3">
+	    <span v-if="id == 1">값이 1입니다.</span>
+	    <span v-else-if="id == 2">값이 2입니다.</span>
+	    <span v-else>값이 1 또는 2가 아닙니다.</span>
+	</div>
+	<div id="app4">
+		<template v-if="id == 1">
+			<span>값은</span>
+			<span>1입니다.</span>
+		</template>
+		<template v-else-if="id == 2">
+			<span>값은</span>
+			<span>2입니다.</span>
+		</template>
+		<template v-else>
+			<span>값은</span>
+			<span>1 또는 2가 아닙니다.</span>
+		</template>
+	</div>
+	<script>
+		var vm = new Vue ({
+			el : "#app",
+			data : {
+				product : "monitor",
+				inStock : true,
+				onSale : true,
+				showProductDetails : false
+			}
+		});
+		var app = new Vue ({
+			el : "#app2",
+			data : {
+				firstName : ""
+			}
+		});
+		var second = new Vue ({
+			el : "#app3",
+			data : {
+				id : 2
+			}
+		});
+		var vm2 = new Vue ({
+			el : "#app4",
+			data : {
+				id : 3
+			}
+		});
+	</script>
+</body>
+</html>

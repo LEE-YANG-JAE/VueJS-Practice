@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="example">
+	    <custom-table></custom-table>
+	</div>
+	<script>
+	    Vue.component("my-row", {
+	        render: function (h) {
+	            return h("tr", this.$slots.default);
+	        }
+	    });
+	
+	    Vue.component("my-cell", {
+	        render: function (h) {
+	            return h("td", this.$slots.default);
+	        }
+	    });
+	
+	    new Vue({
+	        el: "#example",
+	        components: {
+	            "custom-table": {
+	                template: "<table><my-row><my-cell>123</my-cell><my-cell>456</my-cell></my-row></table>"
+	            }
+	        }
+	    });
+	</script>
+</body>
+</html>

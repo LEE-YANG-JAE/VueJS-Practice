@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <input type="text" v-model.lazy="msg" v-on:keyup="changed">
+	</div>
+	<script>
+	    var vm = new Vue({
+	        el: "#app",
+	        data: {
+	            msg: ""
+	        },
+	        methods: {
+	            changed: function (event) {
+	                console.log(this.msg);
+	            }
+	        }
+	    });
+	</script>
+</body>
+</html>

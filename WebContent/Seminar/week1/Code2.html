@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<!-- https://vue-loader.vuejs.org/en/features/scoped-css.html -->
+</head>
+<style scoped>
+@media (min-width: 250px) {
+    .list-container:hover[data-v-f3f3eg9] {
+        background: orange;
+    }
+    .list-container2:hover[data-v-f3f3eg9] {
+        background: blue;
+    }
+    table {
+    border-collapse: collapse;
+	}
+	table, th, td {
+	    border: 1px solid black;
+	}
+}
+</style>
+<body>
+	<div id="app">
+		<template>
+			<table>
+				<tr class='list-container' data-v-f3f3eg9>
+					<td>1</td>
+					<td>2</td>
+				</tr>
+				<tr class='list-container2' data-v-f3f3eg9>
+					<td>3</td>
+					<td>4</td>
+				</tr>
+			</table>
+		</template>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app"
+		});
+	</script>
+</body>
+</html>

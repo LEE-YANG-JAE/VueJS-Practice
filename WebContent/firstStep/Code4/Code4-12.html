@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+		
+	<script>
+		var mixin = {
+			created : function() { console.log(1) },
+			data : { a:'hello' }
+		};
+		var vm = new Vue({
+			created : function () { console.log(2) },
+			mixins : [mixin],
+			data : { a:'hello3' }
+		});
+		
+		var mixin2 = {
+			created : function() { console.log(3) },
+			data : { a:'hello' }
+		};
+		var mixin3 = {
+			created : function() { console.log(5) },
+			data : { a:'hello' }
+		};
+		var vm2 = new Vue({
+			created : function () { console.log(4) },
+			mixins : [mixin2,mixin3],
+			data : { a:'hello3' }
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

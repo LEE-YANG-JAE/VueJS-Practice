@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<form @submit.prevent="addProduct" action="./5-ActionEvent-1">
+			<div>
+				<span>What do you want?</span>
+				<input type="text" v-model="product">
+			</div>
+			<button type="submit">Go buy~</button>
+		</form>
+		<img @mouseover.once="showImage" src="./cat_text.png" id="imageSample">
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				product : "",
+				addProduct : function() {
+					console.log(this.product);
+				},
+				showImage : function() {
+					$("#imageSample").attr("src","./cute_cat.jpg");
+				}
+			}
+		});
+	</script>
+</body>
+</html>

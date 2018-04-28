@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <input type="radio" v-model="pick" v-bind:value="a">
+	    <span>{{ pick }}</span>
+	</div>
+	<script>
+	    var vm = new Vue({
+	        el: "#app",
+	        data: {
+	            pick: "",
+	            a: "선택됨"
+	        }
+	    });
+	</script>
+</body>
+</html>

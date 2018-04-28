@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <input type="text" v-model.lazy="msg1" v-on:keyup="changed1" placeholder=".lazy">
+		<br>
+		<input type="number" v-model.number="msg2" v-on:click="changed2" placeholder=".number">
+		<br>
+		<input type="text" v-model.trim="msg3" v-on:keyup="changed3" placeholder=".trim">
+	</div>
+	<script>
+	    var vm = new Vue({
+	        el: "#app",
+	        data: {
+				msg1: "",
+				msg2: 0 ,
+				msg3: ""
+	        },
+	        methods: {
+	            changed1: function (event) {
+	                console.log(this.msg1);
+				},
+				changed2: function (event) {
+	                console.log(typeof this.msg2);
+	            },
+				changed3: function (event) {
+	                console.log("===" + this.msg3 + "===");
+	            }
+	        }
+	    });
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<div id = "app">
+		<props-simple msg="안녕~ Vue.js" hello="Hello" />
+	</div>
+	
+	<script>
+		Vue.component('props-simple', {
+			props: ['msg', 'hello']
+		});
+		var vm = new Vue({
+			el : "#app",
+		});
+		alert(vm.$props);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

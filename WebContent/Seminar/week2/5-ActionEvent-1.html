@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template>
+			<div>
+				<span>{{ count }} <button v-on:click="addToCart">ADD</button></span>
+			</div>
+		</template>
+		<br>
+		<template>
+			<div v-for="list in products">
+				{{ list.name }} price {{ list.price }}
+				<template v-if="list.count > 0">
+					<span>* {{ list.count }}</span>
+				</template>
+			</div>
+		</template>
+		<div>
+			<select v-model="product">
+				<option>Computer</option>
+				<option>Notebook</option>
+				<option>SmartPhone</option>
+			</select>
+			<button v-on:click="addToCart2(product)">ADD TO CART</button>
+		</div>
+		<div>
+			You have to pay ${{ sum }}
+		</div>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				count :0,	
+				products : [{ name : "Computer", count : 0, price : 100, value : 0},
+				 			{ name : "Notebook", count : 0, price : 120, value : 0 },
+							{ name : "SmartPhone", count : 0, price : 90, value : 0 } ],
+				product : "",
+				addToCart : function() {
+					vm.count += 1;
+				},
+				addToCart2 : function(product) {
+					for ( var i = 0; i < vm.products.length; i++ ){
+						if(vm.products[i].name == product ){
+							vm.products[i].count += 1
+							vm.products[i].value = vm.products[i].count * vm.products[i].price
+						}
+					}
+				}
+			},
+			created: function(){
+				this.product = this.products[1].name; // 라이프 사이클의 beforeMount, mount 까지 가능
+			},
+			computed : {
+				sum : function() {
+					var sum = 0;
+					for ( var i = 0; i < this.products.length; i++ ){
+						sum += this.products[i].value
+					}
+					return sum;
+				}
+			},
+			watch : {
+				sum : function(new_val, old_val) {
+					console.log("before :" + old_val);
+					console.log("after :" +  new_val);
+				}
+			}
+		});
+	</script>
+</body>
+</html>

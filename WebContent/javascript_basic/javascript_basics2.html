@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script>
+	// https://joshua1988.github.io/web-development/javascript/javascript-basic-summary/
+	/* 프로토타입 체이닝
+	해당 함수에 존재하지 않는 속성, 메서드를 부모 객체(프로토타입 객체)를 찾음 */
+	var obj = {
+		  name: 'captain',
+		  printName: function () {
+		    console.log(this.name);
+		  }
+		};
+	obj.printName(); // 'captain'
+	console.log(obj.hasOwnProperty('name')); // true
+	console.log(obj.hasOwnProperty('city')); // false
+	/* obj에서 사용한 printName() 메서드는 obj에 선언되었기 때문에 사용이 가능하다. 
+	하지만 hasOwnProperty() 메서드는 선언되지도 않았는데 사용할 수 있다. 
+	왜냐면 obj의 프로토타입 객체가 Object이고, Object에 내장된 메서드가 hasOwnProperty() 이기 때문에, 
+	obj에서 프로토타입 객체의 hasOwnProperty() 를 호출한다. 
+	참고로, 자바스크립트 모든 객체의 최상위 부모 객체는 Object 객체다. */
+	
+	/* Object, String, Number 프로토타입 객체 메서드 재정의
+	자바스크립트에서 기본으로 제공하는 Object, String, Number 등의 표준 객체에 사용자가 원하는 기능을 재정의하여 사용할 수 있다. */
+	String.prototype.printText = function (text) {
+		  console.log("Print this text out " + text);
+		};
+	var name = "captain";
+	name.printText('pangyo'); // 'Print this text out pangyo'
+	
+	/* 즉시 실행 함수
+	함수를 정의함과 동시에 바로 실행하는 함수. 
+	함수를 다시 호출할 수 없다는 특징이 있다. 
+	따라서, 최초 한 번의 실행만 요구되는 초기화 코드에 적합하다. 
+	jQuery 와 같은 오픈소스 라이브러리들의 구조. */
+	(function (name) {
+	  console.log('This is the immediate function : ' + name);
+	})('foo');
+	
+	/* 클로져
+	실행이 끝난 함수의 스코프를 참조할 수 있는 함수 */
+	function parent() {
+	  var a = 'Parent is done';
+	  function child() {
+	    console.log(a);
+	  }
+	  return child;
+	}
+	var closure = parent();
+	closure();
+	/* 위 내부함수의 정의대로라면 parent 의 내부함수인 child() 는 외부에서 접근이 불가능하다. 
+	하지만 return 값에 child 를 넘김으로써 외부에서도 child 를 호출할 수 있게 된다. 
+	따라서, child() 에서 parent 의 값을 참고하고 있다면, 
+	child() 를 밖에서 호출함으로써 parent() 의 변수에 접근이 가능하게 된다. 
+	이것이 클로져 */
+	
+	/* map() 구현 */
+	// definition
+	Array.prototype.myMap = function(callback) {
+	    arr = [];
+	    for (var i = 0; i < this.length; i++)
+	        arr.push(callback(this[i], i, this));
+	    return arr;
+	};
+	//tests
+	var arrs = ['dic tanin', 'boo radley', 'hans gruber'];
+	var numbers2 = [1, 4, 9];
+	var goodT = arrs.myMap(function(n) {
+	    return n;
+	});
+	var squareRoot = numbers2.myMap(function(num) {
+	    return Math.sqrt(num);
+	});
+	console.log(goodT); // [ 'dic tanin', 'boo radley', 'hans gruber' ]
+	console.log(squareRoot); // [ 1, 2, 3 ]
+	
+	
+	/* 실행 컨텍스트를 이해하기 위한 자바스크립트 동작과정
+	1. 변수, 함수 선언, arguments 을 가진 활성 객체(Variable Object) 생성
+	2. Scope Chain 생성 및 초기화
+		변수 초기화 : 변수 값에 undefined 할당
+	3. this 바인딩
+	4. 코드 해석 및 실행
+		변수 값 할당 : 변수에 실제 값 할당
+	
+	변수 초기화 과정
+	1. 변수 선언 - 변수를 활성 객체에 할당
+	2. 변수 초기화 - 변수 값에 undefined 할당
+	3. 변수 실제 값 할당 - 변수에 실제 값을 할당
+	
+	실행 컨텍스트를 이해하기 위한 문제
+	비동기 실행 방식인 setTimeout 를 이용한 예제이다. */
+	console.log("1");
+	function exec() {
+	  setTimeout(function() {
+	    console.log("2");
+	  }, 3000);
+	  setTimeout(function() {
+	    console.log("3");
+	  }, 0);
+	  console.log("4");
+	  setTimeout(function() {
+	    console.log(5);
+	  }, 1000);
+	}
+	exec();
+	// 위 코드 실행 결과 : 1, 4, 3, 5, 2
+	/* setTimeout 이 지연시간이 0 이라고 할지라도 실행 컨텍스트가 다르기 때문에 1,4 가 먼저 출력된다. 
+	이번엔 for 문과 setTimeout 이다. */
+	var i;
+	for (i = 0; i < 5; i++) {
+	  setTimeout(function() {
+	    console.log(i); // 5, 5, 5, 5, 5
+	  }, 1000);
+	}
+	/* 위 코드를 실행시켰을 때, 
+	이 코드가 실행되는 메인 컨텍스트와 setTimeout 이 실행되는 컨텍스트가 다르기 때문에 
+	일반 프로그래밍 지식 관점에서는 0,1,2,3,4 이라고 추측하겠지만, 
+	실제로는 for 문의 실행이 모두 끝난 후에 setTimeout 의 콜백 함수가 실행되기 때문에 숫자 5가 다섯 번 출력된다. */
+	</script>
+</body>
+</html>

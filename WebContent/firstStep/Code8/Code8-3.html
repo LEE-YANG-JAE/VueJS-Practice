@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="example">
+		<p>캐싱된 시간: {{ now }}</p>
+		<p ref="tester"></p>
+	</div>
+	<script>
+		var vm = new Vue ({
+			el : "#example",
+			computed : {
+				now : function() {
+					return Date.now()
+				}
+			},
+			methods : {
+				show : function() {
+					this.$refs.tester.innerHTML = Date.now();
+				}
+			}
+		});
+	</script>
+</body>
+</html>

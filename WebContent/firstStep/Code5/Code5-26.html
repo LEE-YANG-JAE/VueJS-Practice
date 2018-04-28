@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+	<script src="accounting.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="app">
+    {{ price | currency }}
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            price: 9999
+        },
+        filters: {
+        	"currency": function (text) {
+                return accounting.formatMoney(text, { symbol: '₩', format: '%s %v', precision: 0 });
+            }
+        }
+    });
+</script>
+</body>
+</html>

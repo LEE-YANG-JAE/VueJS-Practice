@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<!-- 머스태시 문법에 의한 오류가 발생하면 다음처럼 v-text 이용 -->
+	<div v-text="number + 1"></div>
+    <div v-text="ok ? 'YES' : 'NO'"></div>
+    <div v-text="message.split('').reverse().join('')"></div>
+    <div v-bind:id="'list-' + id"></div>
+    
+	<!-- 보간법에 사용할 수 없는 자바스크립트 형식
+	{{ var a = 1 }}
+    {{ if (ok) { return message } }}
+  	-->
+</div>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+        	number : 5,
+        	ok : false,
+        	message : "hello",
+        	id : "test"
+        }
+    });
+</script>
+</body>
+</html>

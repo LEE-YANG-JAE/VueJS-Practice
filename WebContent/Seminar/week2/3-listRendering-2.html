@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<cart-product v-for="item in products" 
+			:product="item" :key="item.id">
+		</cart-product>
+	</div>
+	<script>
+		const items = [{id : 100, brand : "Samsung", name : "G-6"},
+					 {id : 101, brand : "LG", name : "G4"}];
+		Vue.component("cartProduct",{
+			template : "<div>{{ product.brand }} {{ product.name }} from {{ product.id }}</div>",
+			props : ["product"]
+		});
+		let vm = new Vue({
+			el : "#app",
+			data : {
+				products : items
+			}
+		});
+	</script>
+</body>
+</html>

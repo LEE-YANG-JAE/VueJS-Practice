@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <system v-bind:prop-b="true"></system>
+    </div>
+    <script>
+        Vue.component('system', {
+            props: {
+                propB: {
+                    type: [Number, Boolean],
+                    validator: function (value) {
+                        if ((typeof value) == "number") {
+                            if (value > 0 && value < 20) {
+                                return true;
+                            }
+
+                            return false;
+                        } else if ((typeof value) == "boolean") {
+                            if (value) return true;
+                            else return false;
+                        }
+                    }
+                },
+            },
+            render: function (h) {
+                return h('span', this.$slots.default);
+            }
+        });
+
+        new Vue({
+            el: '#example'
+        });
+    </script>
+</body>
+</html>

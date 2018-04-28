@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<form method="post" action="/search">
+		<label id="text_search_word">검색어</label>
+		<input type="text" v-model="search_value" id="search_word" />
+		<input type="submit" value="찾기"/>
+	</form>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data : {
+        	search_value : ""
+        }
+    });
+</script>
+</body>
+</html>

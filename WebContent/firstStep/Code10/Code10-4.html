@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<p id="p_title">안녕하세요. 여러분. Vue.js를 배우시길 잘하셨을 겁니다</p>
+	<button id="btn_title">메시지 뒤집기</button>
+	<script>
+	    document.querySelector("#btn_title").onclick = function (e) {
+	        var old_str = document.querySelector("#p_title").innerHTML;
+	        var reverse_str = old_str.split("").reverse().join("");
+	        document.querySelector("#p_title").innerHTML = reverse_str;
+	    }
+	</script>
+</body>
+</html>

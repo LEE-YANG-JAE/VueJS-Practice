@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+	<script>
+	// https://joshua1988.github.io/web-development/javascript/javascript-basic-summary/
+	/* 스코프 체인을 이해하기 위한 예제
+	아래는 전역 스코프와 함수 스코프를 구분하면 된다. */
+	// ex.1
+	var a = 1;
+	var b = 2;
+	function func() {
+	  var a = 10;
+	  var b = 20;
+	  console.log(a); // 10
+	  console.log(b); // 20
+	}
+	func();
+	console.log(a); // 1
+	console.log(b); // 2
+	//아래는 내부함수 innerfunc 에서 외부함수인 func 의 변수에 접근하고 있다.
+	// ex.2
+	var a = 1;
+	function func() {
+	  var a = 2;
+	  function innerfunc() {
+	    return a;
+	  }
+	  console.log(innerfunc()); // 2
+	}
+	func();
+	// 아래 예제는 func1 의 실행 컨텍스트가 전역이라는 것에 주목한다.
+	// ex.3
+	var a = 1;
+	function func1() {
+	  return a;
+	}
+	function func2(func1) {
+	  var a = 2;
+	  console.log(func1()); // 1
+	}
+	func2(func1);
+	
+	/* 클로져 정의 및 코드 예시
+	외부 함수의 실행이 종료되어 컨텍스트가 반환되더라도, 
+	내부 함수로 종료된 외부 함수의 스코프(변수)에 접근이 가능한 기법:스코프 체이닝
+	이미 생명주기가 끝난 외부 함수의 변수를 참조하는 함수 */
+	function func() {
+	  var a = 1;
+	  var cl = function () {
+	    console.log(a);
+	  };
+	  return cl
+	}
+	var result = func();
+	console.dir(result); // [[Scope]] 에서 Closure 함수임을 확인 가능
+	result();
+	// 일정한 형식을 가진 템플릿에서 입력된 값에 따라 다른 결과물을 내는 코드
+	var str = [
+	  'hello ',
+	  '',
+	  ' world'
+	];
+	function completeSentence(name) {
+	  str[1] = name;
+	  return str.join('');
+	}
+	console.log(completeSentence('js'));
+	
+	// 위 코드에 클로져를 적용하면
+	function completeSentence(name) {
+	  var str = [
+	    'hello ',
+	    '',
+	    ' world'
+	  ];
+	  return function () {
+	    str[1] = name;
+	    return str.join('');
+	  };
+	}
+	var result = completeSentence('js');
+	console.log(result()); // hello js world
+	
+	// 위 함수를 좀 더 기능 단위로 분할해보면
+	function completeSentence(name) {
+	  var str = [
+	    'hello ',
+	    '',
+	    ' world'
+	  ];
+	  // 입력된 문자열로 문장을 완성하는 기능
+	  var complete = function () {
+	    str[1] = name;
+	    return str.join('');
+	  };
+	  // 문장 완성 기능을 클로져로 빼는 역할
+	  var closure = function () {
+	    return complete();
+	  };
+	  return closure;
+	}
+	var result = completeSentence('js');
+	console.log(result());  // hello js world
+	
+	/* 클로져 활용
+	클로져를 활용하여 Java나 기타 언어처럼 속성 및 메서드의 범위를 정할 수 있다. */
+	// 클로져로 Java 클래스와 유사하게 모듈화한 예제
+	var Module = (function() {
+	    var privateProperty = 'foo';
+	    function privateMethod(args) {
+	      console.log('private method ' + args + " " + privateProperty);
+	    }
+	    return {
+	       publicProperty: ' publicProperty',
+	       publicMethod: function(args) {
+	          console.log("public method " + args + this.publicProperty );
+	        },
+	        privilegedMethod: function(args) {
+	          return privateMethod(args);
+	        }
+	    };
+	})();
+	Module.privilegedMethod("2"); // private method 2 foo
+	Module.publicMethod("1"); // public method 1
+	/* var Module = (function() {
+	    var privateProperty = 'foo';
+	    function privateMethod(args) {
+	      console.log('private method');
+	    }
+
+	    return {
+	        publicProperty: '',
+	        publicMethod: function(args) {
+	          console.log("public method");
+	        },
+	        privilegedMethod: function(args) {
+	          return privateMethod(args);
+	        }
+	    };
+	})();
+
+	Module.privilegedMethod(); */
+	</script>
+</body>
+</html>

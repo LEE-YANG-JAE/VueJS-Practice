@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="example">
+	    <my-component></my-component>
+	</div>
+	<script>
+	    Vue.component("my-component", {
+	        template: "<div>사용자화 컴포넌트입니다!</div>"
+	    });
+	
+	    new Vue({
+	        el: "#example"
+	    });
+	</script>
+</body>
+</html>

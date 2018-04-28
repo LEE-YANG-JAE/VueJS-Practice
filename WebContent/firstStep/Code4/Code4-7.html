@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+
+	<script type="text/x-template" id="markup_tmpl">
+		<p>Hello, {{ name }} </p>
+	</script>
+	<script>
+		var vm = new Vue ({
+			data : {
+				name : "Hanbit"
+			},
+			template : "#markup_tmpl"
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

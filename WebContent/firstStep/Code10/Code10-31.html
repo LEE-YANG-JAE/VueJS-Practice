@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <button @click.alt.shift="onAltShfit_Click" @click.alt.c="onAlt_Click">A</button>
+	</div>
+	<script>
+	    new Vue({
+	        el: '#app',
+	        methods: {
+	            onAlt_Click: function () {
+	                console.log("Clicked Alt");
+	            },
+	            onAltShfit_Click: function () {
+	                console.log("Clicked Alt + Shift");
+	            }
+	        }
+	    });
+	</script>
+</body>
+</html>

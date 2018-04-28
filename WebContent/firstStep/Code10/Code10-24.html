@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <input v-on:keyup.esc="esc_key">
+	</div>
+	<script>
+	    var app = new Vue({
+	        el: "#app",
+	        methods: {
+	            esc_key: function () {
+	                console.log("[Esc] 키를 누르셨습니다.");
+	            }
+	        }
+	    });
+	</script>
+</body>
+</html>

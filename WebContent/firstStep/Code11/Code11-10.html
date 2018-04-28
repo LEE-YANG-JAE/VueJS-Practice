@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+	    <span>{{ toggle }}</span>
+	</div>
+	<script>
+	    var vm = new Vue({
+	        el: "#app",
+	        data: {
+	            toggle: "체크됨",
+	            a: "체크됨",
+	            b: "체크 해제"
+	        }
+	    });
+	</script>
+</body>
+</html>
