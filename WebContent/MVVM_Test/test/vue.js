@@ -4,12 +4,12 @@ var vm = new Vue({
         test : "Success"
     },
     components: {
-        'my-row': {
+        "my-row": {
             render: function(h) {
                 return h("tr", this.$slots.default);
             }
         },
-        'my-cell': {
+        "my-cell": {
             render: function(h) {
                 return h("td", this.$slots.default);
             }

@@ -14,11 +14,37 @@
 	        <div style="background-color: blue;width:200px;height:200px;" v-on:click.self="doMiddle2">
 	            <span v-on:click="doThat2">span element</span>
 	        </div>
-	    </div>
+		</div>
+		<hr>
+		<input @keyup.enter="submit" v-model="message">
+		<hr>
+		<input @keyup.ctrl.c="onCopy" v-model="message2">
+		<span>Copied message => "{{ message3 }}"</span>
+		<hr>
+		<img @click.right="mRight" src="./cat_text.png">
+		<img @click.middle="mMiddle" src="./cute_cat.jpg">
 	</div>
 	<script>
 		var vm = new Vue({
 			el : "#app",
+			data : {
+				message : "",
+				message2 : "",
+				message3 : "",
+				message4: "Mouse click please",
+				submit : function() {
+					console.log(vm.message);
+				},
+				onCopy : function() {
+					vm.message3 = vm.message2;
+				},
+				mRight : function() {
+					alert("You clicked on the right side of the mouse");
+				},
+				mMiddle : function() {
+					alert("You clicked on the middle of the mouse");
+				}
+			},
 			methods: {
 				doThat: function () {
 					console.log("이벤트가 발생했는데 stop 이벤트 수식어로 이벤트가 정지될까요?");

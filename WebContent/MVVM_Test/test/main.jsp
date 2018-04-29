@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <%@include file="design.html"%>
+    <div id="example">
+        <%@include file="design.html"%>
+        <%@include file="design.html"%>
+    </div>
+    <script src="vue.js"></script>
 </body>
 </html>

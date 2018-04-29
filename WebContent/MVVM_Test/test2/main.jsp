@@ -6,6 +6,10 @@
     <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 </head>
 <body>
-    <%@include file="design.html"%>
+    <div id="app">
+        <%@include file="design.html"%>
+        <%@include file="design.html"%>
+    </div>
+    <script src="vue.js"></script>
 </body>
 </html>

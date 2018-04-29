@@ -1,29 +1,24 @@
-<div id="app">
-	<div>
-		<span>{{ count }}  <button v-on:click="addToCart">ADD</button></span>
-	</div>
-	<hr>
-	<template>
-		<div v-for="list in products">
-			{{ list.name }} price {{ list.price }}
-			<template v-if="list.count > 0">
-				<span>* {{ list.count }}</span>
-			</template>
-		</div>
-	</template>
-	<hr>
-	<div>
-		<select v-model="product">
-			<option>Computer</option>
-			<option>Notebook</option>
-			<option>SmartPhone</option>
-		</select>
-		<button v-on:click="addToCart2(product)">ADD TO CART</button>
-	</div>
-	<div>
-		You have to pay $<span>{{ sum }}</span>
-	</div>
+<div>
+	<span>{{ count }}  <button v-on:click="addToCart">ADD</button></span>
 </div>
-
-<!-- Import Vue Script-->
-<script src="vue.js"></script>
+<hr>
+<template>
+	<div v-for="list in products">
+		{{ list.name }} price {{ list.price }}
+		<template v-if="list.count > 0">
+			<span>* {{ list.count }}</span>
+		</template>
+	</div>
+</template>
+<hr>
+<div>
+	<select v-model="product">
+		<option>Computer</option>
+		<option>Notebook</option>
+		<option>SmartPhone</option>
+	</select>
+	<button v-on:click="addToCart2(product)">ADD TO CART</button>
+</div>
+<div>
+	You have to pay $<span>{{ sum }}</span>
+</div>
