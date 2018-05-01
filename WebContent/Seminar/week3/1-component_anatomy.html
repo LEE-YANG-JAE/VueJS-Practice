@@ -65,9 +65,8 @@
 			},
 			methods : {
 				countPlus : function() {
-					this.counter+=1;
+					this.counter+= 1;
 					alert(this.counter);
-					this.$emit("countP");
 				}
 			},
 			template : `
@@ -76,6 +75,7 @@
 				<br>
 				<button v-on:click="countPlus">add</button>
 				<ProductComponent>{{ product.name }}</ProductComponent>
+				<input v-model="fullName">
 				<ReviewComponent>{{ email }} + {{ fullName }}</ReviewComponent>
 			</div>`
 		});
