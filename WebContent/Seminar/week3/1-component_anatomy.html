@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<my-component v-bind:message="messageOrigin" :product="product" :email="emailAddress">
+			
+		</my-component>
+	</div>
+	<script>
+		var productComponent = {
+			render : function(h) {
+				return h("div", this.$slots.default);
+			}
+		};
+		var reviewcomponent = {
+			render : function(h) {
+				return h("div", this.$slots.default);
+			}
+		}
+		Vue.component("my-component", {
+			components : {
+				ProductComponent : productComponent,
+				ReviewComponent : reviewcomponent
+			},
+			props : {
+				message : String,
+				product : Object,
+				email : {
+					type : String,
+					required :true,
+					default : "none",
+					validator : function(value) {
+						if ( value.length > 3 ) {
+							return true;
+						} else {
+							return false;
+						}
+					} 
+				}
+				
+			},
+			data : function() {
+				return {
+					firstName : "Vue",
+					lastName : "Mastery",
+					counter : 0
+				}
+			},
+			computed : {
+				fullName : function() {
+					return this.firstName + " " + this.lastName
+				}
+			},
+			watch : {
+				firstName : function (value, oldValue) {
+					console.log(value + " + " +oldValue);
+				},
+				fullName : function (value, oldValue) {
+					console.log(value + " + " +oldValue);
+				}
+			},
+			methods : {
+				countPlus : function() {
+					this.counter+=1;
+					alert(this.counter);
+					this.$emit("countP");
+				}
+			},
+			template : `
+			<div>
+				<span>{{ message }}</span>
+				<br>
+				<button v-on:click="countPlus">add</button>
+				<ProductComponent>{{ product.name }}</ProductComponent>
+				<ReviewComponent>{{ email }} + {{ fullName }}</ReviewComponent>
+			</div>`
+		});
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				messageOrigin : "Hello Welcome World",
+				product : {
+					id : 0, name : "computer"
+				},
+				emailAddress : "aabbcc",
+				counter : 0
+			}
+		});
+	</script>
+</body>
+</html>
