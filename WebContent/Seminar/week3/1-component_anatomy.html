@@ -7,8 +7,8 @@
 <body>
 	<div id="app">
 		<my-component v-bind:message="messageOrigin" :product="product" :email="emailAddress">
-			
 		</my-component>
+		{{ emailAddress }}
 	</div>
 	<script>
 		var productComponent = {
@@ -21,10 +21,16 @@
 				return h("div", this.$slots.default);
 			}
 		}
+		var emailcomponent = {
+			render : function(h) {
+				return h("span", "test " + email);
+			}
+		}
 		Vue.component("my-component", {
 			components : {
 				ProductComponent : productComponent,
-				ReviewComponent : reviewcomponent
+				ReviewComponent : reviewcomponent,
+				EmailComponent : emailcomponent
 			},
 			props : {
 				message : String,
@@ -36,12 +42,10 @@
 					validator : function(value) {
 						if ( value.length > 3 ) {
 							return true;
-						} else {
-							return false;
 						}
+						return false;
 					} 
 				}
-				
 			},
 			data : function() {
 				return {
@@ -51,16 +55,26 @@
 				}
 			},
 			computed : {
-				fullName : function() {
-					return this.firstName + " " + this.lastName
+				fullName : {
+					get : function () {
+						return this.firstName + " " + this.lastName;
+					},
+					set : function(newValue) {
+						var names = newValue.split(' ');
+						this.firstName = names[0];
+						this.lastName = names[names.length -1];
+					}		
 				}
 			},
 			watch : {
 				firstName : function (value, oldValue) {
-					console.log(value + " + " +oldValue);
+					console.log("firstName change : " + oldValue + " => " + value);
 				},
 				fullName : function (value, oldValue) {
-					console.log(value + " + " +oldValue);
+					console.log(value + " from " +oldValue);
+				},
+				email : function (value, oldValue) {
+					console.log(value + " from email " +oldValue);
 				}
 			},
 			methods : {
@@ -72,11 +86,13 @@
 			template : `
 			<div>
 				<span>{{ message }}</span>
-				<br>
+				<hr>
 				<button v-on:click="countPlus">add</button>
+				<hr>
 				<ProductComponent>{{ product.name }}</ProductComponent>
-				<input v-model="fullName">
-				<ReviewComponent>{{ email }} + {{ fullName }}</ReviewComponent>
+				<hr>
+				<input v-model.lazy="fullName">
+				<ReviewComponent>{{ fullName }} <EmailComponent></EmailComponent></ReviewComponent>
 			</div>`
 		});
 		var vm = new Vue({
@@ -86,7 +102,7 @@
 				product : {
 					id : 0, name : "computer"
 				},
-				emailAddress : "aabbcc",
+				emailAddress : "aabbcc@.com",
 				counter : 0
 			}
 		});
