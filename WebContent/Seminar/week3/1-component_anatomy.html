@@ -20,17 +20,11 @@
 			render : function(h) {
 				return h("div", this.$slots.default);
 			}
-		}
-		var emailcomponent = {
-			render : function(h) {
-				return h("span", "test " + email);
-			}
-		}
+		};
 		Vue.component("my-component", {
 			components : {
 				ProductComponent : productComponent,
-				ReviewComponent : reviewcomponent,
-				EmailComponent : emailcomponent
+				ReviewComponent : reviewcomponent
 			},
 			props : {
 				message : String,
@@ -43,15 +37,18 @@
 						if ( value.length > 3 ) {
 							return true;
 						}
-						return false;
 					} 
+					/* Note that props are validated before a component instance is created.
+					so instance properties(e.g data, computed, etc) will not be available 
+					inside default or validator functions. */ 
 				}
 			},
 			data : function() {
 				return {
 					firstName : "Vue",
 					lastName : "Mastery",
-					counter : 0
+					counter : 0,
+					mail : this.email
 				}
 			},
 			computed : {
@@ -74,7 +71,9 @@
 					console.log(value + " from " +oldValue);
 				},
 				email : function (value, oldValue) {
-					console.log(value + " from email " +oldValue);
+					if ( value.length > 3 ) {
+						this.mail = value;
+					}
 				}
 			},
 			methods : {
@@ -92,7 +91,7 @@
 				<ProductComponent>{{ product.name }}</ProductComponent>
 				<hr>
 				<input v-model.lazy="fullName">
-				<ReviewComponent>{{ fullName }} <EmailComponent></EmailComponent></ReviewComponent>
+				<ReviewComponent>{{ fullName }} {{ mail }}</ReviewComponent>
 			</div>`
 		});
 		var vm = new Vue({
