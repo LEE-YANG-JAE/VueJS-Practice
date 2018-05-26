@@ -8,12 +8,15 @@
 	<div id="app">
 		<button-counter v-on:increment-by="inWithVal"></button-counter>
 		<button-counter v-on:increment-by="inWithVal"></button-counter>
+		<!-- 3. 내보내진 increment-by는 5라는 매개변수 갖고 있고, 
+		루트 인스턴스의 함수 inWithVal 에 전달한다. -->
 		<br>
 		{{ value }}
 	</div>
 	<script>
 		Vue.component("button-counter",{
 			template : "<button v-on:click='increase'>Increase {{ counter }} times</button>",
+			/* 1. increase를 주목하자. */
 			data : function(){
 				return {
 					counter : 0
@@ -22,7 +25,10 @@
 			methods : {
 				increase : function(){
 					this.counter += 1;
+					/* button-counter 여러개이어도 독립적으로 동작. 
+					즉 생성된 각 컴포넌트 안의 counter를 의미 */
 					this.$emit("increment-by", 5);
+					/* 2. increase 함수 동작시키면 increment-by 함수와 함께 매개변수 5를 내보낸다.*/
 				}
 			}
 		});
@@ -36,6 +42,7 @@
 					vm.value += toAdd
 				}
 			}
+			/* 4. inWithVal은 5를 받고 콜백함수를 동작시킴.*/
 		});
 	</script>
 </body>
