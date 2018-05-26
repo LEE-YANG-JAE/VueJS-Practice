@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="hello">{{ msg }}</div>
+	<div id="hello2">{{ msg }}</div>
+	<script>
+		var vm = new Vue({
+			el : "#hello",
+			created : function() {
+				console.log("created 이벤트가 발생되고 있습니다.");
+				/* 
+					nextTick은 다음 DOM 업데이트 사이클 이후 실행하는 콜백을 연기. 
+					DOM 업데이트를 기다리기 위해 일부 데이터를 변경한 직후 사용해야 함.
+					https://kr.vuejs.org/v2/api/index.html#Vue-nextTick
+				*/
+				this.$nextTick(function() {
+					this.$el.innerHTML = "Hi!"; 
+					/* Hello Vue.js 대신 Hi 출력
+					 $nextTick 메서드를 created이벤트에서 호출했음을 뜻함 */
+				});
+			},
+			data : {
+				msg : "Hello Vue.js"
+			}
+		});
+		/* 
+		$nextTick 메서드를 호출하면 DOM이 업데이트된 이후에 실행하도록 
+		별도의 큐에 담아두었다가 DOM이 업데이트된 후 $nextTick 메서드를 
+		호출했던 순서대로 내부 큐에서 꺼내어 콜백 함수를 실행하는 구조
+		*/
+		
+		var vm2 = new Vue({
+			el : "#hello2",
+			created : function() {
+				var th = this.$nextTick();
+				
+				th.then(function(vue) { 
+					/* Promise 콜백 함수가 Vue 인스턴스를 전달받도록 선언을 할 시, 
+					매개변수 안에 vue 를 넣어 줌 */
+					console.log("성공2");
+					console.log(vue);
+					// vue 인자로 Vue 인스턴스를 참조할 수 있음.
+				});
+			},
+			data : {
+				msg : "Hello Vue.js"
+			}
+		});
+	</script>
+</body>
+</html>

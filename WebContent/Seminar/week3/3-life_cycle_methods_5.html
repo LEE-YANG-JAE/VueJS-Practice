@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id ="hello">
+		<keep-alive>
+			<component :is="child1" v-if="show"></component>
+		</keep-alive>
+		<button v-on:click="deactivate">deactivated 실행</button>
+	</div>
+	<script>
+		var Child = {
+				template : '<div>Child deactivated 이벤트 훅 테스트 </div>',
+				deactivated: function() {
+					console.log("Child deactivated 이벤트가 호출되었습니다.");
+				}
+				// componet의 화면이 사라졌을 때 deactivated 사용
+		}
+		
+		var vm = new Vue({
+			el : "#hello",
+			data : {
+				child1: Child,
+				show: true
+			},
+			methods : {
+				deactivate : function() {
+					vm.show = false;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

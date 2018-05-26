@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id ="hello">
+		<keep-alive>
+			<component :is="child1" v-if="show"></component>
+		</keep-alive>
+		<!-- activated 와 deactivated 기능을 위해서 keep-alive 태그로 감싸야 함.
+		그리고 component 태그로 자식 태그를 설정 -->
+		<button v-on:click="activate">activated 실행</button>
+	</div>
+	<script>
+		var Child = {
+				template : '<div>Child activated 이벤트 훅 테스트 </div>',
+				activated: function() {
+					console.log("Child activated 이벤트가 호출되었습니다.");
+				}
+				// componet의 화면이 나타나졌을 때 activated 함수 사용
+		}
+		
+		var vm = new Vue({
+			el : "#hello",
+			data : {
+				child1: Child,
+				show: false
+			},
+			methods : {
+				activate : function() {
+					vm.show = true;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

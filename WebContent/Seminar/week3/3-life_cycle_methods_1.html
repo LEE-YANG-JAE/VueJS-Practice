@@ -3,78 +3,43 @@
 <head>
 	<meta charset="utf-8">
 	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-</head>
 <body>
-	<div id="hello"></div>
-	<div id="hello2"></div>
-	<div id="hello3"></div>
-
+	<div id ="hello">
+		<span> {{ hello }} </span>
+	</div>
+	
 	<script>
 		var vm = new Vue({
-			template : "<div>{{ msg }}</div>",
+			el : "div#hello",
 			data : {
-				msg : "Hello Vue.js"
+				hello : 'vue.js'
+			},
+			beforeCreate : function() {
+				console.log('beforeCreate 이벤트가 발생되었습니다.');
+			},
+			created : function() {
+				console.log('created 이벤트가 발생되었습니다.');
+			},
+			beforeMount : function() {
+				console.log('beforeMount 이벤트가 발생되었습니다.');
+			},
+			mounted : function() {
+				console.log('mounted 이벤트가 발생되었습니다.');
+			},
+			beforeUpdate : function() {
+				console.log("새롭게 업데이트하는 hello 상태 값은 " + this.hello + "입니다.");
+			},
+			updated : function() {
+				console.log("새롭게 업데이트하는 hello 상태 값은 " + this.hello + "입니다.");
+				console.log(this.$el.innerHTML);
+			},
+			beforeDestroy : function() {
+				console.log('beforeDestroy 이벤트가 발생되었습니다.');
+			},
+			destroyed : function() {
+				console.log('destroyed 이벤트가 발생되었습니다.');
 			}
 		});
-		/*
-		vm.$mount 메서드는 Vue 인스턴스를 DOM의 특정 엘리먼트에 마운트. 
-		Created 이벤트 훅이 실행되고 beforeMount 이벤트 훅이 실행되기 전에서 동작.
-
-		Vue vm인스턴스는 생성자에 el 옵션을 제공하지 않고 인스턴스화하면 
-		브라우저 메모리에만 존재하는 객체가 됨.
-
-		이 상태의 Vue 인스턴스를 ‘마운트하지 않은(unmount) 상태’ 라고 하며 
-		인스턴스에 $el 속성도 생성되지 않음. 
-		
-		Vue vm 인스턴스를 화면에 보이게 하려면 vm.$mount 메서드를 사용하거나 
-		DOM API를 사용해 Vue인스턴스에서 제공하는 엘리먼트를 DOM에 추가를 해야 함.*/
-
-
-		var vm2 = new Vue({
-			template : "<div>{{ msg }}</div>",
-			data : {
-				msg : "Hello Vue.js"
-			}
-		});
-		vm2.$mount();
-		document.querySelector("div#hello").appendChild(vm2.$el); 
-		// vm2.$el 속성이 생성된 Vue 인스턴스를 화면에 추가
-		
-		/* 
-		$mount 메서드는 호출할 때 인자를 전달 할 수 있음.
-		첫번째 인자는 사용자가 생성한 Vue 인스턴스를 표시할 DOM 엘리먼트
-		DOM 엘리먼트 지정은 DOM 엘리먼트 객체 
-		또는 엘리먼트 선택자(Element Selector) 문자열을 사용
-		*/
-		var vm3 = new Vue({
-			template : "<div>{{ msg }}</div>",
-			data : {
-				msg : "Hello Vue.js2"
-			}
-		});
-		var hello_element = document.querySelector("#hello2");
-		vm3.$mount(hello_element);
-		
-		var vm4 = new Vue({
-			template : "<div>{{ msg }}</div>",
-			data : {
-				msg : "Hello Vue.js3"
-			}
-		});
-		vm4.$mount("#hello3");
-		/* 
-		Vue 인스턴스의 랜더링 결과가 DOM에 추가되지 않은 엘리먼트라면 
-		Vue의 랜더링 여부를 명확하게 판단할 수 없다. 
-		이럴 때는 메서드의 인자로 엘리먼트 선택자를 추가해야 함.
-		
-		$mount 메서드 호출 인자로 엘리먼트 선택자를 추가하면 
-		Vue.js는 DOM 엘리먼트를 찾아서 인스턴스의 내용(template 옵션에 제공한 템플릿 내용 
-		또는 render 함수의 실행결과)을 렌더링을 함. 
-		
-		엘리먼트 선택자는 DOM에서 엘리먼트를 찾기 때문에 브라우저에 
-		Vue 인스턴스가 렌더링 되었는지를 명확하게 판단 할 수 있음.
-		*/
-
 	</script>
 </body>
 </html>
