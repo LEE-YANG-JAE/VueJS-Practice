@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-bind:id="dynamicId"></div>
+		<hr>
+		<button v-bind:disabled="isButtonDisabled">Button</button>
+		<button v-on:click="changing">ChangeStatus</button>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				dynamicId : "YangJae",
+				isButtonDisabled : true
+			},
+			methods : {
+				changing : function() {
+					var bool = vm.isButtonDisabled;
+					if ( bool ){
+						vm.isButtonDisabled = null;
+						// 'false', 'null', 'undefined', 'disabled' can be used to render
+					} else {
+						vm.isButtonDisabled = true;
+					}
+				}
+			}
+		});
+		console.log(vm.$el);
+	</script>
+</body>
+</html>

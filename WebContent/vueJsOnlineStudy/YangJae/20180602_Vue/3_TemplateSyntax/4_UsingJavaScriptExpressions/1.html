@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{ number + 1 }}</p>
+		<p>{{ ok ? "YES" : "NO" }}</p>
+		<p>{{ message.split('').reverse().join('') }}</p>
+		<div v-bind:id="'list-' + id"></div>
+		<!--
+			this is a statement, not an expression:
+			{{ var a = 1 }}
+
+			flow control won't work either, use ternary expressions
+			{{ if (ok) { return message } }}
+		-->
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				number : 5,
+				ok : true,
+				message : "Hello World",
+				id : "YangYang"
+			}
+		});
+		console.log(vm.$el);
+	</script>
+</body>
+</html>

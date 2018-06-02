@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>{{ foo }}</p>
+		<!--this will no longer update 'foo'! -->
+		<button v-on:click="foo = 'baz'">Change it</button>
+	</div>
+	<script>
+	var obj = {
+		foo : "bar"
+	};
+
+	Object.freeze(obj);
+
+	var vm = new Vue({
+		el : "#app",
+		data: {
+			data : obj
+		}
+	});
+	
+	</script>
+</body>
+</html>
