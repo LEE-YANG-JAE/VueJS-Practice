@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-if="Math.random() > 0.5">
+			Now you see me
+		</div>
+		<div v-else>
+			Now you don't
+		</div>
+		<!--
+			A v-else element must immediately follow 
+			a v-if or a v-else-if element 
+			- otherwise it will not be recognized.
+		-->
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				ok : true
+			}
+		});
+	</script>
+</body>
+</html>

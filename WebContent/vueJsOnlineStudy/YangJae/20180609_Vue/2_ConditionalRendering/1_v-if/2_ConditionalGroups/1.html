@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template v-if="ok">
+			<h1>Title</h1>
+			<p>Paragraph 1</p>
+			<p>Paragraph 2</p>
+		</template>
+		<!--
+			What if we want to toggle more than one element? 
+			In this case we can use v-if on a <template> element, 
+			which serves as an invisible wrapper
+		-->
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				ok : true
+			}
+		});
+	</script>
+</body>
+</html>
