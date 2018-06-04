@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="example-3">
+		<button v-on:click="say('hi')">Say hi</button>
+		<button v-on:click="say('what')">Say what</button>
+		<!--
+			Sometimes we also need to access the original DOM event in an inline statement handler. 
+			You can pass it into a method using the special $event variable:
+		-->
+		<hr>
+		<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+				Submit
+		</button>
+	</div>
+	<script>
+		new Vue({
+			el : "#example-3",
+			methods : {
+				say : function (message) {
+					alert(message);
+				},
+				warn: function (message, event) {
+					// now we have access to the native event
+					if (event) event.preventDefault();
+					alert(message);
+				}
+			}
+		});
+	</script>
+</body>
+</html>

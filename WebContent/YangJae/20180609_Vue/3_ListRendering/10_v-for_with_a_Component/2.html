@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="todo-list-example">
+		<form v-on:submit.prevent="addNewTodo">
+			<label for="new-todo">Add a todo</label>
+			<input
+				v-model="newTodoText"
+				id="new-todo"
+				placeholder="E.g Feed the cat">
+			<button>Add</button>
+		</form>
+		<ul>
+			<li
+				is="todo-item"
+				v-for="(todo, index) in todos"
+				v-bind:key="todo.id"
+				v-bind:title="todo.title"
+				v-on:remove="todos.splice(index, 1)">
+			</li>
+			<!--
+				Note the is="todo-item" attribute. 
+				This is necessary in DOM templates, 
+				because only an <li> element is valid inside a <ul>.
+				It does the same thing as <todo-item>, but works around a potential browser parsing error.
+				See https://vuejs.org/v2/guide/components.html#DOM-Template-Parsing-Caveats to learn more.
+			-->
+		</ul>
+	</div>
+	<script>
+		Vue.component("todo-item",{
+			props : [ "title" ],
+			template : `
+			<li>
+				{{ title }}
+				<button v-on:click="$emit('remove')">Remove</button>
+			</li>`
+		});
+		var vm = new Vue({
+			el : "#todo-list-example",
+			data : {
+				newTodoText : '',
+				todos : [
+					{
+						id : 1,
+						title : "Do the dishes"
+					},
+					{
+						id : 2,
+						title : "Take out the trash"
+					},
+					{
+						id : 3,
+						title : "Mow the lawn"
+					}
+				],
+				newtTodoId : 4
+			},
+			methods : {
+				addNewTodo : function() {
+					this.todos.push({
+						id : this.newtTodoId++,
+						title : this.newTodoText
+					})
+					this.newTodoText = ''
+				}
+			}
+
+		});
+	</script>
+</body>
+</html>

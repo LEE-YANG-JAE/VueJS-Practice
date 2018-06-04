@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!--
+			This can be useful when you want to render nodes for only some items, like below:
+		-->
+		<li v-for="todo in todos" v-if="!todo.isComplete">
+			{{ todo }}
+		</li>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				todos : [
+					{ do : "Go Shooping", isComplete : false },
+					{ do : "Go to Movies", isComplete : true },
+					{ do : "Go to Church", isComplete : true },
+					{ do : "Go to work", isComplete : false }
+				]
+			}
+		});
+	</script>
+</body>
+</html>

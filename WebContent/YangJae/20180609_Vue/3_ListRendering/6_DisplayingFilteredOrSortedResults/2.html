@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="n in even(numbers)">{{ n }}</li>
+		</ul>
+		<!--
+			In situations where computed properties are not feasible (e.g. inside nested v-for loops), you can use a method
+		-->
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				numbers : [ 1, 2, 3, 4, 5 ]
+			},
+			methods: {
+				even : function (numbers) {
+					return numbers.filter(function (number) {
+						return number % 2 === 0
+					})
+				}
+			}
+		});
+	</script>
+</body>
+</html>

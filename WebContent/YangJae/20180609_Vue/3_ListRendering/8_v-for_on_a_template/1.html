@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<template v-for="item in items">
+				<li>{{ item.msg }}</li>
+				<li class="divider" role="presentation"></li>
+			</template>
+		</ul>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				items : [
+					{ id : 0, product : "computer", msg : "good" },
+					{ id : 1, product : "notebook", msg : "bad" }
+				]
+			}
+		});
+	</script>
+</body>
+</html>

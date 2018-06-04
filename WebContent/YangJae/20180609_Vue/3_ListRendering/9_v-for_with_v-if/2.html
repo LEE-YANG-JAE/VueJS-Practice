@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!--
+			Your intent is to conditionally skip execution of the loop, 
+			you can place the v-if on a wrapper element (or <template>). 
+			For example:
+		-->
+		<ul v-if="todos.length">
+			<li v-for="todo in todos">
+				{{ todo }}
+			</li>
+		</ul>
+		<p v-else>No todos left</p>
+		<button v-on:click="remove">Remove Todos</button>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				todos : [
+					{ do : "Go Shooping", isComplete : false },
+					{ do : "Go to Movies", isComplete : true },
+					{ do : "Go to Church", isComplete : true },
+					{ do : "Go to work", isComplete : false }
+				]
+			},
+			methods : {
+				remove : function() {
+					vm.todos.pop();
+				}
+			}
+		});
+	</script>
+</body>
+</html>
