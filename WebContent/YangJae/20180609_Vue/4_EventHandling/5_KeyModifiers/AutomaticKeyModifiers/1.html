@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input @keyup.page-down="onPageDown">
+		<!-- https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values -->
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			methods: {
+				onPageDown: function(){
+					alert("onPageDown");
+				}
+			}
+		});
+		
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- the click event's propagation will be stopped -->
+		<div style="background-color: magenta; width: 100px; height: 100px;" v-on:click="doMiddle">
+	        <a v-on:click.stop="doThis">doThis</a>
+	    </div>
+
+		<!-- the submit event will no longer reload the page -->
+		<form action="../3_Methods_in_InlineHandlers/1.html" v-on:submit.prevent="onSubmit">
+			<label for="info">Information</label>
+			<input id="info" type="text">
+		</form>
+
+		<!-- modifiers can be chained -->
+		<div style="background-color: magenta; width: 100px; height: 100px;" v-on:click="doMiddle">
+			<a href="../3_Methods_in_InlineHandlers/1.html" v-on:click.stop.prevent="doThat">doThat</a>
+		</div>
+		
+		<!-- just the modifier -->
+		<form action="../3_Methods_in_InlineHandlers/1.html" v-on:submit.prevent>
+			<label for="info2">Information2</label>
+			<input id="info2" type="text">
+		</form>
+
+		<!-- use capture mode when adding the event listener -->
+		<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+		<div v-on:click="doTop" style="background-color: blue;width:200px;height:200px;">
+	        <div v-on:click.capture="doMiddle" style="background-color: magenta;width:100px;height:100px;">
+	            <div v-on:click="doThis">dothis</div> <!-- doMiddle -> doThis -> doTop --> <!-- Higher target element than child target element -->
+	        </div>
+		</div>
+		
+		<hr>
+		<!-- only trigger handler if event.target is the element itself -->
+		<!-- i.e. not from a child element -->
+		<div v-on:click="doLast">
+	        <div style="background-color: blue;width:200px;height:200px;" v-on:click.self="doMiddle">
+	            <div v-on:click.self="doThat">doThat</div> <!-- doThat -> doLast -->
+	        </div>
+		</div>
+		
+		<hr>
+		<a v-on:click.once="doThis">doThis</a>
+
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				example1 : "original"
+			},
+			methods : {
+				doThis : function(){
+					alert("doThis");
+				},
+				onSubmit : function(){
+					alert("onSubmit");
+				},
+				doThat : function(){
+					alert("doThat")
+				},
+				doMiddle : function(){
+					alert("doMiddle");
+				},
+				doTop : function(){
+					alert("doTop");
+				},
+				doLast : function(){
+					alert("doLast");
+				}
+			}
+		});
+	</script>
+</body>
+</html>

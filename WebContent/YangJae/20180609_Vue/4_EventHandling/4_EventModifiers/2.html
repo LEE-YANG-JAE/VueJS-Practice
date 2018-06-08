@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- the scroll event's default behavior (scrolling) will happen -->
+		<!-- immediately, instead of waiting for `onScroll` to complete  -->
+		<!-- in case it contains `event.preventDefault()`                -->
+		<div v-on:scroll.passive="onScroll">
+			<button v-on:click="add">Add</button>
+			<p v-for="n in 100">
+				{{ n }}
+			</p>
+			<li v-for="todo in todos">
+				{{ todo.msg }}
+			</li>
+		</div>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			beforeMount () {
+			  window.addEventListener('scroll', this.onScroll);
+			},
+			beforeDestroy () {
+			  window.removeEventListener('scroll', this.onScroll);
+			},
+			data : {
+				todos : [
+					{ msg : "nothing"} 
+				]
+			},
+			methods : {
+				onScroll : function(){
+					alert("onScroll");
+				},
+				add : function(){
+					vm.todos.push({ msg : "test" })
+				}
+			}
+		});
+	</script>
+</body>
+</html>
