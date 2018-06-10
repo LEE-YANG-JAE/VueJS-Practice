@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- `picked` is a string "a" when checked -->
+		<input type="radio" v-model="picked" value="a">
+		<input type="radio" v-model="picked" value="b">
+		{{ picked }}
+		<hr>
+		<!-- `toggle` is either true or false -->
+		<input type="checkbox" v-model="toggle">
+		{{ toggle }}
+		<hr>
+		<!-- `selected` is a string "abc" when the first option is selected -->
+		<select v-model="selected">
+			<option value="abc">ABC</option>
+			<option value="def">DEF</option>
+		</select>
+		{{ selected }}
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				picked : "a",
+				toggle : true,
+				selected : "abc"
+			}
+		});
+	</script>
+</body>
+</html>

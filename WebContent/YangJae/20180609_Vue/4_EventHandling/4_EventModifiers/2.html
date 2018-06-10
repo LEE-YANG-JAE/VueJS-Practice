@@ -13,22 +13,18 @@
 		<div v-on:scroll.passive="onScroll">
 			<button v-on:click="add">Add</button>
 			<p v-for="n in 100">
+			<div v-for="n in 100">
 				{{ n }}
-			</p>
+			</div>
 			<li v-for="todo in todos">
-				{{ todo.msg }}
+					{{ todo.msg }}
 			</li>
+			</p>
 		</div>
 	</div>
 	<script>
 		var vm = new Vue({
 			el : "#app",
-			beforeMount () {
-			  window.addEventListener('scroll', this.onScroll);
-			},
-			beforeDestroy () {
-			  window.removeEventListener('scroll', this.onScroll);
-			},
 			data : {
 				todos : [
 					{ msg : "nothing"} 
@@ -41,6 +37,12 @@
 				add : function(){
 					vm.todos.push({ msg : "test" })
 				}
+			},
+			created: function () {
+				window.addEventListener('scroll', this.onScroll);
+			},
+			destroyed: function () {
+				window.removeEventListener('scroll', this.onScroll);
 			}
 		});
 	</script>

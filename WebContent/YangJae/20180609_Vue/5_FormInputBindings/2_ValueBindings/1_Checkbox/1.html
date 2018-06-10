@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input
+			type="checkbox"
+			v-model="toggle"
+			true-value="yes"
+			false-value="no"
+		>
+		<p>yes => {{ checkYes }}</p>
+		<p>no => {{ checkNo }}</p>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				toggle : "no"
+			},
+			computed : {
+				checkYes : function() {
+					return this.toggle === "yes";
+				},
+				checkNo : function() {
+					return this.toggle === "no";
+				}
+			}
+		});
+	</script>
+</body>
+</html>

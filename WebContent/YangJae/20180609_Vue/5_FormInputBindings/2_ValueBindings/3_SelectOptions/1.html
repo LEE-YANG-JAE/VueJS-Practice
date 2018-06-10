@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<select v-model="selected">
+			<!-- inline object literal -->
+			<option v-bind:value="{ number: 123 }">123</option>
+			<option v-bind:value="{ number: 2000 }">4</option>
+			<option v-bind:value="{ number: 5334 }">7</option>
+		</select>
+		{{ selected.number }}
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				selected : {
+					number : 123
+				}
+			}
+		});
+		// typeof vm.selected // => 'object'
+	</script>
+</body>
+</html>

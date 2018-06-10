@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		
+		<input v-model.trim="msg">
+		"{{ msg }}"
+		<!-- .trim cut empty spaces of msg's left and right sids. and also reduce empty spaces of long white area.
+		"sdaf ewr q   wer qwqwerfd asf          sdf " ==> "sdaf ewr q wer qwqwerfd asf sdf"
+		-->
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				msg : ""
+			}
+		});
+	</script>
+</body>
+</html>

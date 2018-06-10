@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input id="a" type="radio" v-model="pick" v-bind:value="a">
+		<label for="a">a</label>
+		<input id="b" type="radio" v-model="pick" v-bind:value="b">
+		<label for="b">b</label>
+		<input id="c" type="radio" v-model="pick" v-bind:value="c">
+		<label for="c">c</label>
+		<p>pick => {{ checka }}</p>
+		<p>{{ pick }}</p>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				pick : "cherry",
+				a : "ace",
+				b : "banana",
+				c : "cherry"
+			},
+			computed : {
+				checka : function() {
+					return this.pick === this.a;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

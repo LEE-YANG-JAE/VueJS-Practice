@@ -1,0 +1,15 @@
+When we defined the <button-counter> component, you may have noticed that data wasn’t directly provided an object, like this:
+
+data: {
+  count: 0
+}
+
+Instead, a component’s data option must be a function, so that each instance can maintain an independent copy of the returned data object:
+
+data: function () {
+  return {
+    count: 0
+  }
+}
+
+If Vue didn’t have this rule, clicking on one button would affect the data of all other instances, like below:

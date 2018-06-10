@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input v-model.number="age" type="number">
+		{{ age }}
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				age : ""
+			}
+		});
+		// This is often useful, because even with type="number", the value of HTML input elements always returns a string.
+	</script>
+</body>
+</html>

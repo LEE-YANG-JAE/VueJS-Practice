@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<label for="twoWay">original two way</label>
+		<input id="twoWay" v-model="searchText">
+		
+		<hr>
+		<label for="withCom">with a component</label>
+		<custom-input id="withCom" v-model="searchText"></custom-input>
+		<br>
+		searchText ==> {{ searchText }}
+	</div>
+	<script>
+		Vue.component('custom-input', {
+			props: ['value'],
+			template: `
+				<input
+				v-bind:value="value"
+				v-on:input="$emit('input', $event.target.value + $event.target.value )"
+				>
+			`,
+			methods : {
+				
+			}
+		});
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				searchText : "Hello"
+			}
+		});
+	</script>
+</body>
+</html>

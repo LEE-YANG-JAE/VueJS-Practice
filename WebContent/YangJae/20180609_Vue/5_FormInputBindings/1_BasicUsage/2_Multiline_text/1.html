@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+	<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<span>Multiline message is:</span>
+		<p style="white-space: pre-line;">{{ message }}</p>
+		<br>
+		<textarea v-model="message" placeholder="add multiple lines"></textarea>
+	</div>
+	<script>
+		var vm = new Vue({
+			el : "#app",
+			data : {
+				message : ""
+			}
+		});
+		/*
+		Interpolation on textareas (<textarea>{{text}}</textarea>) won't work. Use v-model instead.
+		*/
+	</script>
+</body>
+</html>
