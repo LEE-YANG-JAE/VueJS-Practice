@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
     <script src="http://unpkg.com/vue-router"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.js"></script>
 </head>
 <body>
     <div id="app">
