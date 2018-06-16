@@ -1,0 +1,10 @@
+<h1>Hello App</h1>
+<ul>
+	<li v-for="entry in article" :key="entry.no">
+		<router-link :to="{name: 'article', params : { no : entry.no }}">
+			Go to {{ entry.title }}
+		</router-link>
+	</li>
+	<router-link to="/test">test Link</router-link>
+</ul>
+<router-view></router-view>
