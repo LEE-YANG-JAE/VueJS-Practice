@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <tr is="blog-post-row"></tr>
+    </table>
+    <table>
+      <tr is="blog-post-row2"></tr>
+      </table>
+  </div>
+
+  <script type="text/x-template" id="blog-post-row2">
+    <tr>
+        <td>Id</td>
+        <td>Password</td>
+        <td>Email</td>
+    </tr>
+  </script>
+
+<script>
+  Vue.component("blog-post-row",{
+    template : `
+      <tr>
+        <td>ID</td>
+        <td>Password</td>
+      </tr>
+      `
+  });
+  Vue.component("blog-post-row2",{
+    template : "#blog-post-row2"
+  });
+  var vm = new Vue({
+    el: '#app'
+  });
+</script>
+
+</body>
+</html>
+

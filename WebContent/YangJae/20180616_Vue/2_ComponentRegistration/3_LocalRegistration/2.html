@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VueStudy</title>
+	<meta charset="utf-8">
+  <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <component-a></component-a>
+      <component-b></component-b>
+  </div>
+
+<script>
+var ComponentA = { 
+  template : `<h1>hi</h1>`
+}
+var ComponentB = { 
+  components : {
+    'component-a': ComponentA
+  },
+  template : `
+  <div>
+      <component-a></component-a>
+      <p>Good</p>
+      <component-a></component-a>
+  </div>`
+ }
+  var vm = new Vue({
+    el: '#app',
+    components : {
+      'component-b' : ComponentB,
+    }
+  });
+</script>
+
+</body>
+</html>
+
