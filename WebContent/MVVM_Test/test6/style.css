@@ -1,0 +1,23 @@
+.bitcoinBox {
+	background-color : #7E8D85;
+	padding : 30px;
+	display : flex;
+	justify-content : center;
+}
+.bitcoinBox__box {
+	margin : 20px;
+	width : 20%;
+	height : 10%;
+	border : 1px black solid;
+	padding : 0px 20px 20px 20px;
+	background-color : #2F242C;
+}
+h1 {
+	color : #F0F7F4;
+}
+.currency {
+	color : #AAB4AD;
+}
+.currency .lighten {
+	color : #FAFAFA;
+}
