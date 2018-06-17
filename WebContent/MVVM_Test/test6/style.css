@@ -1,6 +1,6 @@
 .bitcoinBox {
 	background-color : #7E8D85;
-	padding : 30px;
+	padding : 5px 30px 30px 30px;
 	display : flex;
 	justify-content : center;
 }
